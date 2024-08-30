@@ -1,0 +1,29 @@
+version: "1"
+
+package:
+  id: io.github.UDTStudio
+  name: UDTStudio
+  version: 1.2.2.1
+  kind: app
+  description: |
+        UniSwarm Tools for UDT interface and CANOpen in Qt5/6
+
+command:
+  - /opt/apps/io.github.UDTStudio/files/bin/udtstudio
+
+base: org.deepin.foundation/23.0.0
+runtime: org.deepin.Runtime/23.0.1
+
+sources:
+  - kind: git
+    url: https://github.com/wjyrich/UDTStudio.git
+    version: master
+    commit: 21d154fef2870e3a752abf6e685aae25f37c8d7f
+
+build: |
+  cd /project/linglong/sources/UDTStudio.git
+  git apply ../../../0001-install.patch
+  cd src
+  qmake -makefile PREFIX=${PREFIX} LIB_INSTALL_DIR=${PREFIX}/lib/${TRIPLET}
+  make -j$(nproc)
+  make install

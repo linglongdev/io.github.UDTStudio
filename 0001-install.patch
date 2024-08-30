@@ -1,0 +1,148 @@
+From af9aa1c2f4108caa049af70cdaa251c275457a20 Mon Sep 17 00:00:00 2001
+From: wjyrich <1071633242@qq.com>
+Date: Tue, 13 Aug 2024 12:46:30 +0800
+Subject: [PATCH] install
+ 
+---
+ src/lib/canopen/canopen.pro     | 5 +----
+ src/lib/od/od.pro               | 5 +----
+ src/lib/udtgui/udtgui.pro       | 5 +----
+ src/tools/cood/cood.pro         | 5 +----
+ src/tools/ubl/ubl.pro           | 5 +----
+ src/tools/uds/uds.pro           | 5 +----
+ src/udtstudio/udtstudio.desktop | 7 +++++++
+ src/udtstudio/udtstudio.pro     | 7 ++-----
+ 8 files changed, 15 insertions(+), 29 deletions(-)
+ create mode 100644 src/udtstudio/udtstudio.desktop
+
+diff --git a/src/lib/canopen/canopen.pro b/src/lib/canopen/canopen.pro
+index 92c1fd4..49591e6 100644
+--- a/src/lib/canopen/canopen.pro
++++ b/src/lib/canopen/canopen.pro
+@@ -139,9 +139,6 @@ unix:{
+     QMAKE_LFLAGS += "-Wl,-rpath,\'\$$ORIGIN\'"
+ }
+ 
+-isEmpty(PREFIX)
+-{
+-    PREFIX=/usr/local
+-}
++
+ target.path=$$PREFIX/bin
+ !isEmpty(target.path): INSTALLS += target
+diff --git a/src/lib/od/od.pro b/src/lib/od/od.pro
+index 2c86078..796cdb2 100644
+--- a/src/lib/od/od.pro
++++ b/src/lib/od/od.pro
+@@ -63,9 +63,6 @@ SOURCES += \
+     $$PWD/writer/deviceiniwriter.cpp \
+     $$PWD/writer/edswriter.cpp
+ 
+-isEmpty(PREFIX)
+-{
+-    PREFIX=/usr/local
+-}
++
+ target.path=$$PREFIX/bin
+ !isEmpty(target.path): INSTALLS += target
+diff --git a/src/lib/udtgui/udtgui.pro b/src/lib/udtgui/udtgui.pro
+index 3bd2888..29132d5 100644
+--- a/src/lib/udtgui/udtgui.pro
++++ b/src/lib/udtgui/udtgui.pro
+@@ -174,9 +174,6 @@ unix:{
+ 
+ RESOURCES += $$PWD/img.qrc
+ 
+-isEmpty(PREFIX)
+-{
+-    PREFIX=/usr/local
+-}
++
+ target.path=$$PREFIX/bin
+ !isEmpty(target.path): INSTALLS += target
+diff --git a/src/tools/cood/cood.pro b/src/tools/cood/cood.pro
+index 0ceacda..fa3be2d 100644
+--- a/src/tools/cood/cood.pro
++++ b/src/tools/cood/cood.pro
+@@ -20,9 +20,6 @@ unix:{
+     QMAKE_LFLAGS += "-Wl,-rpath,\'\$$ORIGIN\'"
+ }
+ 
+-isEmpty(PREFIX)
+-{
+-    PREFIX=/usr/local
+-}
++
+ target.path=$$PREFIX/bin
+ !isEmpty(target.path): INSTALLS += target
+diff --git a/src/tools/ubl/ubl.pro b/src/tools/ubl/ubl.pro
+index 604e1a5..3927590 100644
+--- a/src/tools/ubl/ubl.pro
++++ b/src/tools/ubl/ubl.pro
+@@ -24,9 +24,6 @@ unix:{
+     QMAKE_LFLAGS += "-Wl,-rpath,\'\$$ORIGIN\'"
+ }
+ 
+-isEmpty(PREFIX)
+-{
+-    PREFIX=/usr/local
+-}
++
+ target.path=$$PREFIX/bin
+ !isEmpty(target.path): INSTALLS += target
+diff --git a/src/tools/uds/uds.pro b/src/tools/uds/uds.pro
+index f5a129a..6fb0806 100644
+--- a/src/tools/uds/uds.pro
++++ b/src/tools/uds/uds.pro
+@@ -20,9 +20,6 @@ unix:{
+     QMAKE_LFLAGS += "-Wl,-rpath,\'\$$ORIGIN\'"
+ }
+ 
+-isEmpty(PREFIX)
+-{
+-    PREFIX=/usr/local
+-}
++
+ target.path=$$PREFIX/bin
+ !isEmpty(target.path): INSTALLS += target
+diff --git a/src/udtstudio/udtstudio.desktop b/src/udtstudio/udtstudio.desktop
+new file mode 100644
+index 0000000..a8e9fc5
+--- /dev/null
++++ b/src/udtstudio/udtstudio.desktop
+@@ -0,0 +1,7 @@
++[Desktop Entry]
++Type=Application
++Name=UDTStudio
++Comment=UniSwarm UDTStudio
++Exec=/opt/apps/io.github.UDTStudio/files/bin/udtstudio
++Icon=/opt/apps/io.github.UDTStudio/files/share/icons/udtstudio.ico
++Categories=IDE;
+diff --git a/src/udtstudio/udtstudio.pro b/src/udtstudio/udtstudio.pro
+index 218da7b..6dbc082 100644
+--- a/src/udtstudio/udtstudio.pro
++++ b/src/udtstudio/udtstudio.pro
+@@ -29,10 +29,7 @@ unix:{
+ RESOURCES += $$PWD/../../contrib/QDarkStyleSheet/qdarkstyle/style.qrc
+ #RESOURCES += $$PWD/../../contrib/QD2/qdarkstyle/dark/style.qrc
+ 
+-isEmpty(PREFIX)
+-{
+-    PREFIX=/usr/local
+-}
++
+ target.path=$$PREFIX/bin
+ unix
+ {
+@@ -41,7 +38,7 @@ unix
+     desktop.files = udtstudio.desktop
+     INSTALLS += desktop
+     icons.path    = $$PREFIX/share/icons
+-    icons.files   = ../lib/udtgui/img/udtstudio.ico
++    icons.files   = ../udtstudio.png
+     INSTALLS += icons
+     eds.path  = $$PREFIX/data/eds
+     eds.files = ../../eds/*
+-- 
+2.43.4
+
